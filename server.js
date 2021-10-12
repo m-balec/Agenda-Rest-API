@@ -10,4 +10,4 @@ const db = mongoose.connection;
 db.once('open', () => console.log('Connected to database'));
 db.on('error', (error) => console.error(error));
 
-app.listen(3001, () => console.log('Server running')); 
+app.listen(process.env.port || 3001, () => console.log('Server running'));
