@@ -17,4 +17,4 @@ const taskSchema = new mongoose.Schema({
 });
 
 // Exporting this schema to be used by my database
-module.exports = Mongoose.model('Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);
