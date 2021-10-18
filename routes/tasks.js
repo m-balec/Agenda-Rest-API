@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 // GET - One
 router.get('/:id', getTask, (req, res) => {
     res.json(res.task);
-})
+});
 
 
 // CREATE
@@ -33,9 +33,20 @@ router.post('/', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
-})
+});
 // UPDATE
+
+
+
 // DELETE
+router.delete('/:id', getTask, async (req, res) => {
+    try {
+        await res.task.remove();
+        res.json({ message: 'Task Deleted Successfully'});
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 // Middleware to find a single task by ID
