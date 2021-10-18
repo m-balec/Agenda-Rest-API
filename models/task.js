@@ -6,9 +6,10 @@ const taskSchema = new mongoose.Schema({
         type: String,       // Only accepts Strings as titles
         required: true      // IS REQUIRED (no null values)
     },
-    dateOfEvent: {
+    dateCreated: {
         type: Date,
-        required: false
+        required: true,
+        default: Date.now
     },
     description: {
         type: String,

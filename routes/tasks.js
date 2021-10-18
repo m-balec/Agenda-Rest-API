@@ -24,7 +24,6 @@ router.get('/:id', getTask, (req, res) => {
 router.post('/', async (req, res) => {
     const task = new Task({
         title: req.body.title,
-        dateOfEvent: req.body.dateOfEvent,
         description: req.body.description
     });
     try {
