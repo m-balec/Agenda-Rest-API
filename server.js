@@ -2,6 +2,7 @@ require('dotenv').config();             // Required to use environment variables
 const express = require('express');     // Used for creating API
 const mongoose = require('mongoose');   // Used for interacting with mongoDB
 const app = express();
+const port = process.env.PORT || 3001;
 
 // Connecting to Database
 mongoose.connect(process.env.DATABASE_URL);
@@ -16,4 +17,4 @@ app.use(express.json());
 const taskRouter = require('./routes/tasks');
 app.use('/tasks', taskRouter);
 
-app.listen(process.env.port || 3001, () => console.log(`Server running on http://localhost:${process.env.port || 3001}`));
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
