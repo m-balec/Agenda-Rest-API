@@ -12,7 +12,14 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+
 // GET - One
+router.get('/:id', getTask, (req, res) => {
+    res.json(res.task);
+})
+
+
 // CREATE
 router.post('/', async (req, res) => {
     const task = new Task({
@@ -29,5 +36,24 @@ router.post('/', async (req, res) => {
 })
 // UPDATE
 // DELETE
+
+
+// Middleware to find a single task by ID
+//   - Return task if it exists
+//   - Return error message if not
+async function getTask(req, res, next) {
+    let task;
+    try {
+        task = await Task.findById(req.params.id);
+        if (task == null) {
+            return res.status(404).json({ message: 'Task Not Found' });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+
+    res.task = task;
+    next();
+}
 
 module.exports = router;
